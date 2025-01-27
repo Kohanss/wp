@@ -1,0 +1,58 @@
+cp -R /etc/bind/db.local /etc/bind/ukk-farhan.net
+cp -R /etc/bind/db.127 /etc/bind/ukk-farhan.net.reverse
+-
+nano /etc/bind/ukk-farhan.net
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     ukk-farhan.net. root.ukk-farhan.net. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ukk-farhan.net.
+@       IN      A       10.10.10.62
+www.ukk-farhan.net.     IN      CNAME   ukk-farhan.net.
+---------------------------------------------------------------
+nano /etc/bind/ukk-farhan.net.reverse
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     ukk-farhan.net. root.ukk-farhan.net. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@      IN      NS      ukk-farhan.net.
+62     IN      PTR     ukk-farhan.net.
+62     IN      PTR     www.ukk-farhan.net.
+---------------------------------------------------------------
+nano /etc/bind/named.conf.local
+// Forward Zone
+zone "ukk-farhan.net" {
+        type master;
+        file "/etc/bind/ukk-farhan.net";
+};
+
+// Reverse Zone
+zone "10.10.10.in-addr.arpa" {
+        type master;
+        file "/etc/bind/ukk-farhan.net.reverse";
+};
+
+systemctl restart named.service
+nano /etc/resolv.conf
+------------------------
+nameserver 10.10.10.62
+search ukk-farhan.net
+------------------------
+nslookup 10.10.10.62 + ukk-farhan.net + www.ukk-farhan.net
+(jangan lupa setting dns di windows)
+//lakukan ping di cmd 
+//10.10.10.62 + ukk-farhan.net + www.ukk-farhan.net
