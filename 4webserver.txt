@@ -1,4 +1,4 @@
-nano /etc/nginx/sites-available/ukk-randi.net.conf
+nano /etc/nginx/sites-available/ukk-farhan.net.conf
 ---------------------------------------------------------
 server {
     listen 80;
@@ -30,6 +30,6 @@ server {
 ---------------------------------------------------------
 nginx -t
 -
-ln -s /etc/nginx/sites-available/ukk-randi.net.conf /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/ukk-farhan.net.conf /etc/nginx/sites-enabled/
 -
 systemctl reload nginx.service
