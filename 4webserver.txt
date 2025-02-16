@@ -40,3 +40,9 @@ Tambahan ketika eror -------------------------------------
 # systemctl restart nginx 
 JANGAN LUPA HAPUS HISTORY --------------------------------
 history -c
+CARA AGAR IP BISA BUKA WP --------------------------------
+cd /etc/nginx/sites-enabled/
+-
+hapus file "rm default"  
+-
+systemctl reload nginx
