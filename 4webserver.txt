@@ -33,3 +33,10 @@ nginx -t
 ln -s /etc/nginx/sites-available/ukk-farhan.net.conf /etc/nginx/sites-enabled/
 -
 systemctl reload nginx.service
+Tambahan ketika eror -------------------------------------
+# cd /etc/nginx/sites-enabled/
+# ls (HAPUS YANG DEFAULT)
+# rm -rv default
+# systemctl restart nginx 
+JANGAN LUPA HAPUS HISTORY --------------------------------
+history -c
