@@ -1,0 +1,67 @@
+UKK PROXMAX
+
+Remot Contekan ---------------------------------------------------------------------------------
+
+- git clone https://github.com/kohanss/wp.git
+- cd /wp
+- cat (tab)	
+
+Cara pindah file di ubuntu ---------------------------------------------------------------
+
+- ls nya di /home/farhan/wp (di ls mau mindahin apa) misal di dalem ada folder ukk sama dz,, trs mau pindah yang dz
+- mv dz/ /home/farhan/ (nanti file pindah di farhan dan tidak lagi di wp)
+
+INSTALASI PROXMOX ------------------------------------------------------------------------
+- nano /etc/network/interfaces
+(Dalamnya di isi ini) -------------
+auto lo
+iface lo inet loopback
+
+iface ens18 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+        address 10.10.10.1*/24
+        gateway 10.10.10.254
+        bridge-ports ens18
+        bridge-stp off
+        bridge-fd 0
+
+
+source /etc/network/interfaces.d/*
+
+# systemctl restart networking.service (SV IP)
+
+INSTALASI WP ----------------------------------------------------------------------------
+
+FILE prox/wp        : \\10.1.11.201\MyData\hacker NT\ISO  
+
+Problm-----------------------------------------------------------------------------------
++ jika systemctl restart named.service tidak bisa maka cek 
+  -systemctl status named.service(cek status)
+  -nano /etc/bind + tab (buat cek ada apa aja di nano bind)
+  -nano /etc/bind/ukk-namaKamu.net
+  -nano /etc/bind/ukk-farhan.net.reverse
+  -nano /etc/bind/named.conf.
+  -nano /etc/bind/named.conf.local
+
++ jika tidak muncul ip dan masih 127 (DHCP) maka:
+ #nano /etc/netplan/50-cloud-init.yaml
+ -network:
+    ethernets:
+        ens18:
+            dhcp4: false
+            addresses: [10.10.10.205/24]
+            routes:
+              -  to: default
+                 via: 10.10.10.254
+            nameservers:
+              addresses: [10.10.10.254]
+    version: 2
+
+
+Remot use cmd ---------------------------------------------------------------------------
+
+- ssh farhan@10.10.10.** (cmd)
+
+0Cntkan ------------------------------------------------------------------------------------------------------------
