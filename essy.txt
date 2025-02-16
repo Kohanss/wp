@@ -8,3 +8,10 @@
 8. Perawatan server meliputi update OS, backup data, pemantauan log dan performa, menjaga keamanan, serta pengecekan hardware secara berkala.
 9. Restore VM di Proxmox: Masuk ke web interface, pilih node, buka tab Backup, klik file backup, pilih Restore, atur konfigurasi jika diperlukan, lalu jalankan proses dan cek apakah VM berjalan normal.
 10. Backup VM di Proxmox: Masuk ke web interface, pilih VM, buka tab Backup, klik Backup Now, pilih storage tujuan dan mode backup (Snapshot/Stop), lalu jalankan proses hingga selesai.
+
+software
+1.nginx = sebagai webserver
+2.mariaDB = data base
+3.wordpress = mengelola website dan blog
+4.ubuntu = sebagai sistem operasi
+5.proxmox = mengelola server virtual
